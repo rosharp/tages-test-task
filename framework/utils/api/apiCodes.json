@@ -1,0 +1,5 @@
+{
+  "getSuccess": 200,
+  "postSuccess": 201,
+  "notFound": 404
+}
