@@ -5,4 +5,6 @@
 - Add links to data.js / Create pageobjects
 ** TODO Проверить вызовы email и tel
 ** TODO Проверить валидацию формы обратной связи
+- Enter valid credentials => check for errors
+- Enter invalid credentials => check for errors
 ** TODO Отправить тестовый запрос Обратной связи

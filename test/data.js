@@ -1,5 +1,12 @@
 const data = {
   navbarItemsCount: 6,
+  feedbackForm: {
+    name: "Имя*",
+    phone: "Телефон*",
+    company: "Компания",
+    email: "Почта*",
+    comment: "Комментарий",
+  },
   basicAuth: {
     login: "",
     password: "",

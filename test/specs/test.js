@@ -24,7 +24,7 @@ describe("TAGES", () => {
   it("Test case 1", async () => {
     for (let i = 1; i <= data.navbarItemsCount; i++) {
       const navItem = await MainPage.getMenuItem(i);
-      await navItem.isClickable();
+      assert.isTrue(await navItem.isClickable(), `Navbar item with ID ${i} is not clickable`);
     }
   });
 });

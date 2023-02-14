@@ -1,4 +1,4 @@
-const logger = require("../utils/logger");
+const logger = require("../utils/logger/logger");
 const BaseElement = require("../baseElement");
 
 class Input extends BaseElement {
