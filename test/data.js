@@ -1,4 +1,5 @@
 const data = {
+  navbarItemsCount: 6,
   basicAuth: {
     login: "",
     password: "",

@@ -6,6 +6,11 @@ class BrowserUtil {
     return browser.url(`${url}`);
   }
 
+  static async getUrl() {
+    logger.logInfo(`Current URL: "${url}"`);
+    return browser.getUrl();
+  }
+
   static async maximizeWindow() {
     logger.logInfo("Maximize window.");
     return browser.maximizeWindow();

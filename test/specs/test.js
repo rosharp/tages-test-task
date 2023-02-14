@@ -4,11 +4,12 @@ const data = require("../data");
 const config = require("../config.json");
 const BrowserUtil = require("../../framework/utils/browserUtils/browser");
 
-describe("description", () => {
+const MainPage = require("../pages/mainPage");
+
+describe("TAGES", () => {
   beforeEach(async () => {
     await BrowserUtil.reloadSession();
     await BrowserUtil.url(config.baseUrl);
-    await BrowserUtil.maximizeWindow();
   });
 
   afterEach(
@@ -21,6 +22,9 @@ describe("description", () => {
   );
 
   it("Test case 1", async () => {
-    
+    for (let i = 1; i <= data.navbarItemsCount; i++) {
+      const navItem = await MainPage.getMenuItem(i);
+      await navItem.isClickable();
+    }
   });
 });

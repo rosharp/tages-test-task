@@ -1,6 +1,8 @@
 #+title: Checklist
 * Tests
-** TODO Проверить кликабельность всех ссылок и разделов
+** DONE Проверить кликабельность всех ссылок и разделов
+- Click a link => check if the URL is correct
+- Add links to data.js / Create pageobjects
 ** TODO Проверить вызовы email и tel
 ** TODO Проверить валидацию формы обратной связи
 ** TODO Отправить тестовый запрос Обратной связи
