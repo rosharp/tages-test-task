@@ -35,6 +35,8 @@ const data = {
     url: /(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])/g,
     cancellation: /(cancellation|unsubscribe|cancel+)/g,
     urlScheme: /(https:\/\/|http:\/\/)/,
+    email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+    phoneNumber: /^([+]?[0-9\s-\(\)]{3,25})*$/,
   },
 };
 

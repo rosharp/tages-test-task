@@ -16,6 +16,7 @@ class MainPage extends BasePage {
       `(//a[contains(@class, 'nav-menu__item-link')])[${option}]`,
       `Navbar Item #${option}`
     );
+  #footerLink = new Label("//a[contains(@class, 'footer__info-link')]", "Footer link");
   #formInput = (option) =>
     new Input(`//input[@placeholder='${option}']`, `${option} form input`);
   #commentTextarea = new Input(
@@ -35,6 +36,22 @@ class MainPage extends BasePage {
   async getMenuItem(num) {
     logger.logInfo(`Get menu items number: ${num}.`);
     return this.#navMenuItem(num);
+  }
+
+  async validateFooter() {
+    const elements = await this.#footerLink.getElementsList(Label);
+    elements.forEach(async (el) => {
+      try {
+        if (!data.regex.email.test(await el.getText())) {
+          throw new Error;
+        };
+      } catch {
+        if (!data.regex.phoneNumber.test(await el.getText())) {
+          throw new Error;
+        };
+      }
+    });
+    return true;
   }
 
   async validateForm() {

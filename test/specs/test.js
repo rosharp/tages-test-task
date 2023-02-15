@@ -29,13 +29,23 @@ describe("TAGES", () => {
         `Navbar item with ID ${i} is not clickable`
       );
     }
+    assert.isTrue(await MainPage.validateFooter());
   });
 
   Object.values(data.feedbackForm.credValidity).forEach((validity) =>
     it("Validate the feedback form", async () => {
-      await MainPage.setName(data.feedbackForm.inputLengths.nameLength);
-      await MainPage.setPhone(data.feedbackForm.inputLengths.validPhoneLength);
-      await MainPage.setCompany(data.feedbackForm.inputLengths.companyLength);
+      await MainPage.setName(
+        data.feedbackForm.inputLengths.nameLength,
+        validity
+      );
+      await MainPage.setPhone(
+        data.feedbackForm.inputLengths.validPhoneLength,
+        validity
+      );
+      await MainPage.setCompany(
+        data.feedbackForm.inputLengths.companyLength,
+        validity
+      );
       await MainPage.setEmail(
         data.feedbackForm.inputLengths.emailLength,
         validity
