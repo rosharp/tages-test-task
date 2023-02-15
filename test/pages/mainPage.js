@@ -39,9 +39,10 @@ class MainPage extends BasePage {
 
   async validateForm() {
     const inputFields = Object.values(data.feedbackForm.inputFields);
-    if (await this.#successTitle.isLoaded()) {
+    try {
+      await this.#successTitle.isLoaded();
       return true;
-    } else {
+    } catch {
       for (let i = 1; i < inputFields.length - 1; i++) {
         const inputField = this.#formInput(inputFields[i]);
         logger.logInfo(`Validate input field: "${inputFields[i]}".`);

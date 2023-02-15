@@ -31,21 +31,28 @@ describe("TAGES", () => {
     }
   });
 
-  Object.values(data.feedbackForm.credValidity).forEach((value) =>
+  Object.values(data.feedbackForm.credValidity).forEach((validity) =>
     it("Validate the feedback form", async () => {
       await MainPage.setName(data.feedbackForm.inputLengths.nameLength);
       await MainPage.setPhone(data.feedbackForm.inputLengths.validPhoneLength);
       await MainPage.setCompany(data.feedbackForm.inputLengths.companyLength);
       await MainPage.setEmail(
         data.feedbackForm.inputLengths.emailLength,
-        value
+        validity
       );
       await MainPage.setComment(data.feedbackForm.inputLengths.commentLength);
       await MainPage.clickSubmit();
-      assert.isTrue(
-        await MainPage.validateForm(),
-        "Invalid input value in the feedback form"
-      );
+      if (validity) {
+        assert.isTrue(
+          await MainPage.validateForm(),
+          "Invalid input value in the feedback form"
+        );
+      } else {
+        assert.isFalse(
+          await MainPage.validateForm(),
+          "Invalid input value in the feedback form"
+        );
+      }
     })
   );
 });
