@@ -6,6 +6,12 @@ const data = {
     company: "Компания",
     email: "Почта*",
     comment: "Комментарий",
+    nameLength: 5,
+    validPhoneLength: 10,
+    invalidPhoneLength: 9,
+    companyLength: 5,
+    emailLength: 5,
+    commentLength: 5,
   },
   basicAuth: {
     login: "",

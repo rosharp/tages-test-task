@@ -26,5 +26,10 @@ describe("TAGES", () => {
       const navItem = await MainPage.getMenuItem(i);
       assert.isTrue(await navItem.isClickable(), `Navbar item with ID ${i} is not clickable`);
     }
+    await MainPage.setName(data.feedbackForm.nameLength);
+    await MainPage.setPhone(data.feedbackForm.validPhoneLength);
+    await MainPage.setCompany(data.feedbackForm.companyLength);
+    await MainPage.setEmail(data.feedbackForm.emailLength);
+    await MainPage.setComment(data.feedbackForm.commentLength);
   });
 });

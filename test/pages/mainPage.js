@@ -1,5 +1,6 @@
 const data = require("../data");
 const logger = require("../../framework/utils/logger/logger");
+const randomUtils = require("../../framework/utils/randomUtils");
 const BasePage = require("../../framework/basePage");
 const Button = require("../../framework/elements/button");
 const Label = require("../../framework/elements/label");
@@ -10,42 +11,53 @@ class MainPage extends BasePage {
     super(new Label("//h2[@class='section-promo__lead']", "Main header"));
   }
 
-  #navMenuItem = (option) => new Button(`(//a[contains(@class, 'nav-menu__item-link')])[${option}]`, `Navbar Item #${option}`);
-  #formInput = (option) => new Input(`//input[@placeholder='${option}']`);
+  #navMenuItem = (option) =>
+    new Button(
+      `(//a[contains(@class, 'nav-menu__item-link')])[${option}]`,
+      `Navbar Item #${option}`
+    );
+  #formInput = (option) => new Input(`//input[@placeholder='${option}']`, `${option} form input`);
+  #commentTextarea = new Input(`//textarea[@placeholder='${data.feedbackForm.comment}']`, "Comment form textarea");
 
   async getMenuItem(num) {
     logger.logInfo(`Get menu items number: ${num}.`);
     return this.#navMenuItem(num);
   }
 
-  async typeName(str) {
+  async setName(length) {
     const inputField = this.#formInput(data.feedbackForm.name);
-    logger.logInfo(`Type in name: ${str}.`);
-    return inputField.setValue(str);
+    const value = randomUtils.randomString(length);
+    logger.logInfo(`Type in name: "${value}".`);
+    return inputField.setValue(value);
   }
 
-  async typePhone(str) {
+  async setPhone(length) {
     const inputField = this.#formInput(data.feedbackForm.phone);
-    logger.logInfo(`Type in phone number: ${str}.`);
-    return inputField.setValue(str);
+    const value = randomUtils.randomNumberStr(length);
+    logger.logInfo(`Type in phone number: "${value}".`);
+    return inputField.setValue(value);
   }
 
-  async typeCompany(str) {
+  async setCompany(length) {
     const inputField = this.#formInput(data.feedbackForm.company);
-    logger.logInfo(`Type in company name: ${str}.`);
-    return inputField.setValue(str);
+    const value = randomUtils.randomString(length);
+    logger.logInfo(`Type in company name: "${value}".`);
+    return inputField.setValue(value);
   }
 
-  async typeEmail(str) {
+  async setEmail(length, valid = true) {
     const inputField = this.#formInput(data.feedbackForm.email);
-    logger.logInfo(`Type in email: ${str}.`);
-    return inputField.setValue(str);
+    const value = randomUtils.randomString(length);
+    logger.logInfo(`Type in email: "${value}".`);
+    return valid
+      ? `${inputField.setValue(value)}@gmail.com`
+      : inputField.setValue(value);
   }
 
-  async typeComment(str) {
-    const inputField = this.#formInput(data.feedbackForm.comment);
-    logger.logInfo(`Type in a comment: ${str}.`);
-    return inputField.setValue(str);
+  async setComment(length) {
+    const value = randomUtils.randomString(length);
+    logger.logInfo(`Type in a comment: "${value}".`);
+    return this.#commentTextarea.setValue(value);
   }
 }
 
