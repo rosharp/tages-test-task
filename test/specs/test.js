@@ -21,15 +21,17 @@ describe("TAGES", () => {
     })
   );
 
-  it("Test case 1", async () => {
+  it("Check navbar links and validate the feedback form", async () => {
     for (let i = 1; i <= data.navbarItemsCount; i++) {
       const navItem = await MainPage.getMenuItem(i);
       assert.isTrue(await navItem.isClickable(), `Navbar item with ID ${i} is not clickable`);
     }
-    await MainPage.setName(data.feedbackForm.nameLength);
-    await MainPage.setPhone(data.feedbackForm.validPhoneLength);
-    await MainPage.setCompany(data.feedbackForm.companyLength);
-    await MainPage.setEmail(data.feedbackForm.emailLength);
-    await MainPage.setComment(data.feedbackForm.commentLength);
+    await MainPage.setName(data.feedbackForm.inputLengths.nameLength);
+    await MainPage.setPhone(data.feedbackForm.inputLengths.validPhoneLength);
+    await MainPage.setCompany(data.feedbackForm.inputLengths.companyLength);
+    await MainPage.setEmail(data.feedbackForm.inputLengths.emailLength);
+    await MainPage.setComment(data.feedbackForm.inputLengths.commentLength);
+    await MainPage.clickSubmit();
+    assert.isTrue(await MainPage.validateForm(), "Invalid input value in the feedback form");
   });
 });

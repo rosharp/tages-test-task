@@ -36,7 +36,7 @@ class BaseElement {
 
   async isClickable() {
     const el = await this._findElement();
-    logger.logInfo(`Check if "${this._name}" clickable.`);
+    logger.logInfo(`Check if "${this._name}" is clickable.`);
     return el.isClickable();
   }
 

@@ -1,17 +1,25 @@
 const data = {
   navbarItemsCount: 6,
   feedbackForm: {
-    name: "Имя*",
-    phone: "Телефон*",
-    company: "Компания",
-    email: "Почта*",
-    comment: "Комментарий",
-    nameLength: 5,
-    validPhoneLength: 10,
-    invalidPhoneLength: 9,
-    companyLength: 5,
-    emailLength: 5,
-    commentLength: 5,
+    inputFields: {
+      name: "Имя*",
+      phone: "Телефон*",
+      company: "Компания",
+      email: "Почта*",
+      comment: "Комментарий",
+    },
+    inputLengths: {
+      nameLength: 5,
+      validPhoneLength: 10,
+      invalidPhoneLength: 9,
+      companyLength: 5,
+      emailLength: 5,
+      commentLength: 5,
+    },
+    attributes: {
+      error: "form__input_error",
+    },
+    domain: "@gmail.com",
   },
   basicAuth: {
     login: "",
