@@ -20,6 +20,10 @@ const data = {
       error: "form__input_error",
     },
     domain: "@gmail.com",
+    credValidity: {
+      case1: true,
+      case2: false,
+    },
   },
   basicAuth: {
     login: "",

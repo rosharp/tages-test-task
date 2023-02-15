@@ -65,21 +65,21 @@ class MainPage extends BasePage {
     }
   }
 
-  async setName(length) {
+  async setName(length, valid = true) {
     const inputField = this.#formInput(data.feedbackForm.inputFields.name);
     const value = randomUtils.randomString(length);
     logger.logInfo(`Type in name: "${value}".`);
-    return inputField.setValue(value);
+    return valid ? inputField.setValue(value) : "";
   }
 
-  async setPhone(length) {
+  async setPhone(length, valid = true) {
     const inputField = this.#formInput(data.feedbackForm.inputFields.phone);
     const value = randomUtils.randomNumberStr(length);
     logger.logInfo(`Type in phone number: "${value}".`);
     return inputField.setValue(value);
   }
 
-  async setCompany(length) {
+  async setCompany(length, valid = true) {
     const inputField = this.#formInput(data.feedbackForm.inputFields.company);
     const value = randomUtils.randomString(length);
     logger.logInfo(`Type in company name: "${value}".`);
