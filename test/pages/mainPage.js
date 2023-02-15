@@ -11,11 +11,8 @@ class MainPage extends BasePage {
     super(new Label("//h2[@class='section-promo__lead']", "Main header"));
   }
 
-  #navMenuItem = (option) =>
-    new Button(
-      `(//a[contains(@class, 'nav-menu__item-link')])[${option}]`,
-      `Navbar Item #${option}`
-    );
+  #telNumber = new Label("//a[@aria-label='Телефон для запроса']", "Top phone number");
+  #anchor = new Label("//a", "Anchor link");
   #footerLink = new Label("//a[contains(@class, 'footer__info-link')]", "Footer link");
   #formInput = (option) =>
     new Input(`//input[@placeholder='${option}']`, `${option} form input`);
@@ -33,13 +30,17 @@ class MainPage extends BasePage {
   );
   #errorRegex = new RegExp(`${data.feedbackForm.attributes.error}`);
 
-  async getMenuItem(num) {
-    logger.logInfo(`Get menu items number: ${num}.`);
-    return this.#navMenuItem(num);
+  async validatePhoneNumber() {
+    logger.logInfo("Validate phone number.");
+    if (data.regex.phoneNumber.test(await this.#telNumber.getText())) {
+      return true;
+    }
+    return false;
   }
 
   async validateFooter() {
     const elements = await this.#footerLink.getElementsList(Label);
+    logger.logInfo("Validate footer.");
     elements.forEach(async (el) => {
       try {
         if (!data.regex.email.test(await el.getText())) {
@@ -49,6 +50,17 @@ class MainPage extends BasePage {
         if (!data.regex.phoneNumber.test(await el.getText())) {
           throw new Error;
         };
+      }
+    });
+    return true;
+  }
+
+  async validateAnchors() {
+    const elements = await this.#anchor.getElementsList(Label);
+    logger.logInfo("Validate anchors.");
+    elements.forEach(async (el) => {
+      if (!(await el.isClickable())) {
+        return false;
       }
     });
     return true;

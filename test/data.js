@@ -1,5 +1,4 @@
 const data = {
-  navbarItemsCount: 6,
   feedbackForm: {
     inputFields: {
       name: "Имя*",
@@ -24,10 +23,6 @@ const data = {
       case1: true,
       case2: false,
     },
-  },
-  basicAuth: {
-    login: "",
-    password: "",
   },
   regex: {
     redir:

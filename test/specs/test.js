@@ -3,10 +3,9 @@ const logger = require("../../framework/utils/logger/logger");
 const data = require("../data");
 const config = require("../config.json");
 const BrowserUtil = require("../../framework/utils/browserUtils/browser");
-
 const MainPage = require("../pages/mainPage");
 
-describe("TAGES", () => {
+describe("TAGES Homepage", () => {
   beforeEach(async () => {
     await BrowserUtil.reloadSession();
     await BrowserUtil.url(config.baseUrl);
@@ -21,19 +20,14 @@ describe("TAGES", () => {
     })
   );
 
-  it("Check navbar links and validate the feedback form", async () => {
-    for (let i = 1; i <= data.navbarItemsCount; i++) {
-      const navItem = await MainPage.getMenuItem(i);
-      assert.isTrue(
-        await navItem.isClickable(),
-        `Navbar item with ID ${i} is not clickable`
-      );
-    }
-    assert.isTrue(await MainPage.validateFooter());
+  it("Check links, emails and phone numbers", async () => {
+    assert.isTrue(await MainPage.validateAnchors(), "Invalid link on the page");
+    assert.isTrue(await MainPage.validatePhoneNumber(), "Top level phone number is invalid");
+    assert.isTrue(await MainPage.validateFooter(), "Invalid link in the footer");
   });
 
   Object.values(data.feedbackForm.credValidity).forEach((validity) =>
-    it("Validate the feedback form", async () => {
+    it("Validate the feedback form and send a test response", async () => {
       await MainPage.setName(
         data.feedbackForm.inputLengths.nameLength,
         validity

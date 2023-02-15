@@ -1,10 +1,10 @@
 #+title: Checklist
 * Tests
 ** DONE Проверить кликабельность всех ссылок и разделов
-- Click a link => check if the URL is correct
-- Add links to data.js / Create pageobjects
-** TODO Проверить вызовы email и tel
-** TODO Проверить валидацию формы обратной связи
-- Enter valid credentials => check for errors
-- Enter invalid credentials => check for errors
-** TODO Отправить тестовый запрос Обратной связи
+**** DONE Ссылки в футере
+**** DONE Анкоры по странице
+** DONE Проверить вызовы email и tel
+** DONE Проверить валидацию формы обратной связи
+**** DONE Negative
+**** DONE Positive
+** DONE Отправить тестовый запрос Обратной связи
